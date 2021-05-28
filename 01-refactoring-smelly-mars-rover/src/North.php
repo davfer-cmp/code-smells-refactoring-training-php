@@ -20,4 +20,9 @@ class North extends Direction
     {
         return Direction::create("E");
     }
+
+    public function move(Coordinates $coordinates, int $displacement): Coordinates
+    {
+        return $coordinates->moveY($displacement);
+    }
 }

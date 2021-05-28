@@ -14,14 +14,14 @@ class Coordinates
         $this->y = $y;
     }
 
-    public function moveX($displacement): void
+    public function moveX($displacement): Coordinates
     {
-        $this->x = $this->x + $displacement;
+        return new Coordinates($this->x + $displacement, $this->y);
     }
 
-    public function moveY($displacement): void
+    public function moveY($displacement): Coordinates
     {
-        $this->y = $this->y + $displacement;
+        return new Coordinates($this->x, $this->y + $displacement);
     }
 
 }

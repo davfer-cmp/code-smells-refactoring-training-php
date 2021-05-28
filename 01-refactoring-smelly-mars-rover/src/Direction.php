@@ -26,21 +26,7 @@ abstract class Direction
         return new East();
     }
 
-    public function isNorth(): bool
-    {
-        return $this->direction === "N";
-    }
-
-    public function isSouth(): bool
-    {
-        return $this->direction === "S";
-    }
-
-    public function isWest(): bool
-    {
-        return $this->direction === "W";
-    }
-
     abstract public function rotateLeft(): Direction;
     abstract public function rotateRight(): Direction;
+    abstract public function move(Coordinates $coordinates, int $displacement): Coordinates;
 }

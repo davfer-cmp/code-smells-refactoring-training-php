@@ -21,4 +21,9 @@ class South extends Direction
     {
         return Direction::create("W");
     }
+
+    public function move(Coordinates $coordinates, int $displacement): Coordinates
+    {
+        return $coordinates->moveY(-$displacement);
+    }
 }

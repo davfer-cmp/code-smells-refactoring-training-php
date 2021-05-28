@@ -31,15 +31,7 @@ class Rover
                     $displacement = 1;
                 }
 
-                if ($this->direction->isNorth()) {
-                    $this->coordinates->moveY($displacement);
-                } else if ($this->direction->isSouth()) {
-                    $this->coordinates->moveY(-$displacement);
-                } else if ($this->direction->isWest()) {
-                    $this->coordinates->moveX(-$displacement);
-                } else {
-                    $this->coordinates->moveX($displacement);
-                }
+                $this->coordinates = $this->direction->move($this->coordinates, $displacement);
             }
         }
     }

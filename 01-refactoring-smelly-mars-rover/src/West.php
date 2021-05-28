@@ -20,4 +20,9 @@ class West extends Direction
     {
         return Direction::create("N");
     }
+
+    public function move(Coordinates $coordinates, int $displacement): Coordinates
+    {
+        return $coordinates->moveX(-$displacement);
+    }
 }
