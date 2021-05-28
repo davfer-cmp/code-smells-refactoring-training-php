@@ -6,19 +6,15 @@ namespace App;
 
 class West extends Direction
 {
-    public function __construct()
-    {
-        parent::__construct("W");
-    }
 
     public function rotateLeft(): Direction
     {
-        return Direction::create("S");
+        return self::south();
     }
 
     public function rotateRight(): Direction
     {
-        return Direction::create("N");
+        return self::north();
     }
 
     public function move(Coordinates $coordinates, int $displacement): Coordinates

@@ -17,23 +17,32 @@ class Rover
 
     public function receive(string $commandsSequence): void
     {
-        $commandsSequenceLength = strlen($commandsSequence);
-        for ($i = 0; $i < $commandsSequenceLength; ++$i) {
-            $command = substr($commandsSequence, $i, 1);
-            if ($command === "l") {
-                $this->direction = $this->direction->rotateLeft();
-            } elseif ($command === "r") {
-                $this->direction = $this->direction->rotateRight();
-            } else {
-                // Displace Rover
-                $displacement = -1;
-                if ($command === "f") {
-                    $displacement = 1;
-                }
-
-                $this->coordinates = $this->direction->move($this->coordinates, $displacement);
-            }
+        foreach ($this->parse($commandsSequence) as $command) {
+            $this->execute($command);
         }
     }
 
+    public function parse(string $commandsSequence): array
+    {
+        $commands = [];
+        $commandsSequenceLength = strlen($commandsSequence);
+        for ($i = 0; $i < $commandsSequenceLength; ++$i) {
+            $commands[] = substr($commandsSequence, $i, 1);
+        }
+
+        return $commands;
+    }
+
+    public function execute(string $command): void
+    {
+        if ($command === "l") {
+            $this->direction = $this->direction->rotateLeft();
+        } elseif ($command === "r") {
+            $this->direction = $this->direction->rotateRight();
+        } elseif ($command === "f") {
+            $this->coordinates = $this->direction->move($this->coordinates, 1);
+        } else {
+            $this->coordinates = $this->direction->move($this->coordinates, -1);
+        }
+    }
 }

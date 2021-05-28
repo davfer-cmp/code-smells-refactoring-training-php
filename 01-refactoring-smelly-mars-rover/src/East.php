@@ -6,19 +6,15 @@ namespace App;
 
 class East extends Direction
 {
-    public function __construct()
-    {
-        parent::__construct("E");
-    }
 
     public function rotateLeft(): Direction
     {
-        return Direction::create("N");
+        return self::north();
     }
 
     public function rotateRight(): Direction
     {
-        return Direction::create("S");
+        return self::south();
     }
 
     public function move(Coordinates $coordinates, int $displacement): Coordinates
