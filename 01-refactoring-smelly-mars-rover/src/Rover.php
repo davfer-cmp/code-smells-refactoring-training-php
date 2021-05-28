@@ -56,7 +56,7 @@ class Rover
                 } else if ($this->facesWest()) {
                     $this->setCoordinates($this->coordinates->getX() - $displacement, $this->coordinates->getY());
                 } else {
-                    $this->x += $displacement;
+                    $this->setCoordinates($this->coordinates->getX() + $displacement, $this->coordinates->getY());
                 }
             }
         }
