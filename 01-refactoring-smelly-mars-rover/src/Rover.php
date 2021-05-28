@@ -84,7 +84,6 @@ class Rover
 
     private function setCoordinates(int $x, int $y): void
     {
-
         $this->coordinates = new Coordinates($x, $y);
     }
 
