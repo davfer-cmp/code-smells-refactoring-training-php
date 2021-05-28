@@ -6,6 +6,11 @@ namespace App;
 
 class Rover
 {
+    const DISPLACEMENT = 1;
+    const COMMAND_LEFT = "l";
+    const COMMAND_RIGHT = "r";
+    const COMMAND_FORWARD = "f";
+
     private Direction $direction;
     private Coordinates $coordinates;
 
@@ -17,12 +22,11 @@ class Rover
 
     public function receive(string $commandsSequence): void
     {
-        foreach ($this->parse($commandsSequence) as $command) {
-            $this->execute($command);
-        }
+        $commands = $this->extractCommands($commandsSequence);
+        $this->executeCommands($commands);
     }
 
-    public function parse(string $commandsSequence): array
+    public function extractCommands(string $commandsSequence): array
     {
         $commands = [];
         $commandsSequenceLength = strlen($commandsSequence);
@@ -33,16 +37,23 @@ class Rover
         return $commands;
     }
 
+    private function executeCommands(array $commands): void
+    {
+        foreach ($commands as $command) {
+            $this->execute($command);
+        }
+    }
+
     public function execute(string $command): void
     {
-        if ($command === "l") {
+        if ($command === self::COMMAND_LEFT) {
             $this->direction = $this->direction->rotateLeft();
-        } elseif ($command === "r") {
+        } elseif ($command === self::COMMAND_RIGHT) {
             $this->direction = $this->direction->rotateRight();
-        } elseif ($command === "f") {
-            $this->coordinates = $this->direction->move($this->coordinates, 1);
+        } elseif ($command === self::COMMAND_FORWARD) {
+            $this->coordinates = $this->direction->move($this->coordinates, self::DISPLACEMENT);
         } else {
-            $this->coordinates = $this->direction->move($this->coordinates, -1);
+            $this->coordinates = $this->direction->move($this->coordinates, -self::DISPLACEMENT);
         }
     }
 }
