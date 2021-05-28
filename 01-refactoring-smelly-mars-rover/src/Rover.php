@@ -44,12 +44,10 @@ class Rover
                 }
             } else {
                 // Displace Rover
-                $displacement1 = -1;
-
+                $displacement = -1;
                 if ($command === "f") {
-                    $displacement1 = 1;
+                    $displacement = 1;
                 }
-                $displacement = $displacement1;
 
                 if ($this->facesNorth()) {
                     $this->setCoordinates($this->coordinates->getX(), $this->coordinates->getY() + $displacement);
