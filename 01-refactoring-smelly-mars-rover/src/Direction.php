@@ -4,13 +4,26 @@
 namespace App;
 
 
-class Direction
+abstract class Direction
 {
     private string $direction;
 
     public function __construct(string $direction)
     {
         $this->direction = $direction;
+    }
+
+    public static function create(string $direction): Direction
+    {
+        if ($direction === "N") {
+            return new North();
+        } elseif ($direction === "S") {
+            return new South();
+        } elseif ($direction === "W") {
+            return new West();
+        }
+
+        return new East();
     }
 
     public function isNorth(): bool
@@ -28,5 +41,6 @@ class Direction
         return $this->direction === "W";
     }
 
-
+    abstract public function rotateLeft(): Direction;
+    abstract public function rotateRight(): Direction;
 }
