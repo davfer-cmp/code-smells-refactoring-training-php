@@ -50,13 +50,13 @@ class Rover
                 }
 
                 if ($this->facesNorth()) {
-                    $this->setCoordinates($this->coordinates->getX(), $this->coordinates->getY() + $displacement);
+                    $this->coordinates->moveY($displacement);
                 } else if ($this->facesSouth()) {
-                    $this->setCoordinates($this->coordinates->getX(), $this->coordinates->getY() - $displacement);
+                    $this->coordinates->moveY(-$displacement);
                 } else if ($this->facesWest()) {
-                    $this->setCoordinates($this->coordinates->getX() - $displacement, $this->coordinates->getY());
+                    $this->coordinates->moveX(-$displacement);
                 } else {
-                    $this->setCoordinates($this->coordinates->getX() + $displacement, $this->coordinates->getY());
+                    $this->coordinates->moveX($displacement);
                 }
             }
         }
